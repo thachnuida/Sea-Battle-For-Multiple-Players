@@ -1,0 +1,61 @@
+<div class="modal-header">
+	Tạo chiến dịch
+</div>
+<div class="modal-body">
+	<form>
+		<div class="form-group">
+			<label>Tên</label>
+			<input type="text" class="form-control" placeholder="Tên chiến dịch" name="chiendichname" [(ngModel)]="currentChiendich.name"/>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="form-group">
+					<label>Số hàng</label>
+					<input type="number" class="form-control" placeholder="Số hàng" name="sohang" [(ngModel)]="currentChiendich.so_hang"/>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group">
+					<label>Số cột</label>
+					<input type="number" class="form-control" placeholder="Số cột" name="socot" [(ngModel)]="currentChiendich.so_cot"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="form-group">
+					<label>Số máy bay</label>
+					<input type="number" class="form-control" placeholder="Số máy bay mỗi đội" name="somaybay" [(ngModel)]="currentChiendich.so_may_bay_moi_doi"/>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group">
+					<label>Số bom mỗi đội</label>
+					<input type="number" class="form-control" placeholder="Số bom mỗi đội" name="somaybay" [(ngModel)]="currentChiendich.so_bom_moi_doi"/>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Trạng thái</label>
+			<select [(ngModel)]="currentChiendich.is_open" name="isOpen" class="form-control">
+				<option value="0">Đóng chiến dịch</option>
+				<option value="1">Mở chiến dịch</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Cho phép đặt bom</label>
+			<select [(ngModel)]="currentChiendich.cho_phep_tan_cong" name="cho_phep_tan_cong" class="form-control">
+				<option value="1">Cho phép đặt bom</option>
+				<option value="0">Chưa được đặt bom</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Nội dung hiện ra sau khi bắn xong</label>
+			<textarea [(ngModel)]="currentChiendich.noi_dung_sau_khi_xong" name="noi_dung_sau_khi_xong" class="form-control"></textarea>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-outline-dark" (click)="activeModal.dismiss()">Đóng</button>
+	<button class="btn btn-outline-dark" (click)="activeModal.close(currentChiendich)">Lưu</button>
+</div>

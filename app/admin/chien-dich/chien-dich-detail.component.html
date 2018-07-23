@@ -1,0 +1,46 @@
+<h3>{{chiendich.name}}  <button class="btn btn-primary float-right" (click)="updateChienDich()">Sửa</button></h3>
+
+<div class="card mb-2">
+	<div class="card-header bg-dark text-white">
+		Thông tin chiến dịch
+	</div>
+	<div class="card-body">
+		<div>Trạng thái: <span *ngIf="chiendich.is_open == 1" class="badge badge-primary">Đang mở</span><span *ngIf="chiendich.is_open != 1" class="badge badge-danger">Đang đóng</span></div>
+		<div>Số hàng: <span class="badge badge-info">{{chiendich.so_hang}}</span> - Số cột: <span class="badge badge-info">{{chiendich.so_cot}}</span></div>
+		<div>Một đội có <span class="badge badge-info">{{chiendich.so_may_bay_moi_doi}}</span> máy bay và <span class="badge badge-info">{{chiendich.so_bom_moi_doi}}</span> quả bom</div>
+		<div><span *ngIf="chiendich.cho_phep_tan_cong == 1" class="badge badge-warning">Đang cho phép đặt bom</span><span *ngIf="chiendich.cho_phep_tan_cong != 1" class="badge badge-info">Đang không cho phép đặt bom</span></div>
+	</div>
+</div>
+
+<div class="card">
+	<div class="card-header bg-dark text-white">
+		Đội chơi
+	</div>
+	<div class="card-body">
+		<form class="form">
+			<div class="row">
+				<div class="form-group col-8">
+					<input type="text" class="form-control" name="doichoi_name" placeholder="Thêm đội chơi" [(ngModel)]="doiChoi.name"/>
+				</div>
+				<div class="col-4">
+					<button type="submit" class="btn btn-primary" (click)="addDoiChoi()">Thêm</button>
+				</div>
+			</div>
+		</form>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Tên</th>
+					<th>Mật khẩu</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of doiChoiList">
+					<td>{{item.name}}</td>
+					<td>{{item.password}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

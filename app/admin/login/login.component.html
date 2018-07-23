@@ -1,0 +1,9 @@
+<form class="mt-3">
+	<div class="form-group">
+		<input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Mật khẩu"/>
+	</div>
+	<ngb-alert [dismissible]="false" *ngIf="isLoginError">
+	    Đăng nhập không thành công.
+  	</ngb-alert>
+	<button type="submit" class="btn btn-primary" (click)="login()">Đăng nhập</button>
+</form>
