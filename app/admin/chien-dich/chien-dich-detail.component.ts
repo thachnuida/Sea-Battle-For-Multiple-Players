@@ -30,13 +30,10 @@ export class ChienDichDetailComponent implements OnInit {
 			this.http.get<any>(this.appState.state.apiRoot + 'admin/chiendich/' + p.id)
 			.subscribe(data => {
 				this.chiendich = data;
+
+				this.getDoiChoiList();		
 			});
 
-			// Get danh sach doi choi
-			this.http.get<any>(this.appState.state.apiRoot + 'admin/chiendich/' + p.id + '/team')
-			.subscribe(data => {
-				this.doiChoiList = data;
-			});			
 		});
 	}
 
@@ -88,5 +85,17 @@ export class ChienDichDetailComponent implements OnInit {
 				this.doiChoiList.splice(this.doiChoiList.indexOf(team), 1);
 			});
 		}
+	}
+
+	getDoiChoiList() {
+		// Get danh sach doi choi
+		this.http.get<any>(this.appState.state.apiRoot + 'admin/chiendich/' + this.chiendich.id + '/team')
+		.subscribe(data => {
+			this.doiChoiList = data;
+		});	
+	}
+
+	update() {
+		this.getDoiChoiList();
 	}
 }

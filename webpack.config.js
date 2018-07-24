@@ -23,8 +23,8 @@ module.exports = function makeWebpackConfig() {
     output: {
       path: root('dist'),
       publicPath: '/ban-may-bay/dist',
-      filename: 'js/[name].js',
-      chunkFilename: '[name].chunk.js'
+      filename: 'js/[name].js?h=[hash]',
+      chunkFilename: '[name].chunk.js?h=[hash]'
 
     },
 
