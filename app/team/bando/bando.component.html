@@ -1,0 +1,24 @@
+<div *ngIf="mode == 'caidat'">
+	<p>Đặt máy bay: còn lại {{chienDich.so_may_bay_con_lai}} <button class="btn btn-sm btn-danger float-right" (click)="changeMode()">Tấn công</button></p>
+	<div class="map" *ngIf="!isLoading">
+		<div class="cell" *ngFor="let cell of cells" [ngStyle]="cell.style" (click)="toggleAirPlane(cell)">
+			<img *ngIf="cell.hasAirPlane && !cell.isLoading" src="/ban-may-bay/img/airplane.png"/>
+			<img *ngIf="cell.isLoading" src="/ban-may-bay/img/loading.gif"/>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="mode == 'tancong'">
+	<p>Đặt bom: còn lại {{chienDich.so_bom_con_lai}} quả |<span class="float-right">Bắn được: {{chienDich.so_may_bay_ban_duoc}} máy bay</span></p>
+	<p *ngIf="!chienDich.so_bom_con_lai"><button class="btn btn-info" routerLink="/thongtin">Xem Thông tin mật</button></p>
+	<div class="map" *ngIf="!isLoading">
+		<div class="cell cell-bom" *ngFor="let cell of cells" [ngStyle]="cell.style" (click)="addBom(cell)">
+			<img *ngIf="cell.hasBom && !cell.isLoading" src="/ban-may-bay/img/rocket.svg"/>
+			<img *ngIf="cell.isLoading" src="/ban-may-bay/img/loading.gif"/>
+		</div>
+	</div>
+</div>
+
+<img style="position: fixed; top: -1000px;" src="/ban-may-bay/img/airplane.png"/>
+<img style="position: fixed; top: -1000px;" src="/ban-may-bay/img/loading.gif"/>
+<img style="position: fixed; top: -1000px;" src="/ban-may-bay/img/rocket.svg"/>

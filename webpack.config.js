@@ -16,7 +16,8 @@ module.exports = function makeWebpackConfig() {
     entry: {
       'polyfills': './app/polyfills.ts',
       'vendor': './app/vendor.ts',
-      'admin': './app/admin/main.ts'
+      'admin': './app/admin/main.ts',
+      'team': './app/team/main.ts'
     },
 
     output: {
@@ -74,7 +75,14 @@ module.exports = function makeWebpackConfig() {
       new HtmlWebpackPlugin({
         template: 'app/admin/admin.html',
         chunksSortMode: 'dependency',
-        filename: root('admin.html')
+        filename: root('admin.html'),
+        chunks: ['polyfills', 'vendor', 'admin']
+      }),
+      new HtmlWebpackPlugin({
+        template: 'app/team/team.html',
+        chunksSortMode: 'dependency',
+        filename: root('team.html'),
+        chunks: ['polyfills', 'vendor', 'team']
       }),
       // new ExtractTextPlugin('style.css')
     ],

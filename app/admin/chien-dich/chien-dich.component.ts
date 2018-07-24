@@ -6,7 +6,7 @@ import { AppStateService } from '../shared/app-state.service';
 import { ChienDichModalComponent } from './chien-dich-modal.component';
 
 @Component({
-	moduleId: module.id,
+	// moduleId: module.id,
 	selector: 'my-chien-dich',
 	templateUrl: 'chien-dich.component.html'
 })

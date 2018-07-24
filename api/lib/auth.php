@@ -10,8 +10,12 @@ function isAdmin() {
 	return isset($_SESSION['is_admin']) && $_SESSION['is_admin'];
 }
 
-function login($doichoiID) {
-	$_SESSION['doi_choi'] = $doichoiID;
+function login($doichoi) {
+	$_SESSION['doi_choi'] = $doichoi;
+}
+
+function logout() {
+	unset($_SESSION['doi_choi']);	
 }
 
 function adminLogin($password) {

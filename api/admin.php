@@ -1,9 +1,9 @@
 <?php
 if(!isset($_SESSION)) session_start(); 
 
-require_once __DIR__ . './lib/router.php';
-require_once __DIR__ . './lib/db.php';
-require_once __DIR__ . './lib/auth.php';
+require_once __DIR__ . '/./lib/router.php';
+require_once __DIR__ . '/./lib/db.php';
+require_once __DIR__ . '/./lib/auth.php';
 
 function checkLogin() {
 	if (!isAdmin()) {
@@ -12,7 +12,7 @@ function checkLogin() {
 	}
 }
 
-// Default index page
+// Login
 router('POST', '^/api/admin/login$', function() {
     $data = getRequestData();
     sendResponse(['result' => adminLogin($data['password'])]);
@@ -70,7 +70,27 @@ router('GET', '^/api/admin/chiendich/(?<id>\d+)/team$', function($params) {
 	global $db;
 	checkLogin();
 
-	$res = $db->select('doi_choi', '*', ['chien_dich_id' => $params['id']]);
+	$teams = $db->select('doi_choi', '*', ['chien_dich_id' => $params['id']]);
+	$res = [];
+
+	for ($i = 0; $i < count($teams); $i ++) {
+		$team = $teams[$i];
+
+		// Lay so may bay con lai
+		$team['so_may_bay_con_lai'] = $db->count('may_bay', [
+			'doi_choi_id' => $team['id'],
+			'chien_dich_id' => $team['chien_dich_id'],
+			'bi_tieu_diet' => 0
+		]);
+
+		// Lay so may bay ban duoc
+		$team['so_may_bay_ban_duoc'] = $db->sum('bom', 'so_may_bay_ban_duoc', [
+			'doi_choi_id' => $team['id'],
+			'chien_dich_id' => $team['chien_dich_id']
+		]);	
+
+		$res[] = $team;	
+	};
 
 	sendResponse($res);
 });
@@ -91,3 +111,10 @@ router('POST', '^/api/admin/chiendich/(?<id>\d+)/team$', function($params) {
 // Cap nhat 1 doi choi
 
 // Xoa 1 doi choi
+router('DELETE', '^/api/admin/chiendich/(?<id>\d+)/team/(?<teamid>\d+)$', function($params) {
+	global $db;
+	checkLogin();
+
+	$db->delete('doi_choi', ['id' => $params['teamid']]);
+	sendResponse(['result' => true]);
+});

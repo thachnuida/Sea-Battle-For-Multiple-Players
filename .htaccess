@@ -5,3 +5,4 @@ RewriteEngine On
     RewriteRule ^ - [L]
     # If the requested resource doesn't exist, use index.html
 RewriteRule ^quanly admin.html
+RewriteRule ^doichoi team.html

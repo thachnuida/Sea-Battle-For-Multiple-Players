@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 
 @Component({
-	moduleId: module.id,
+	// moduleId: module.id,
 	selector: 'my-admin-login',
 	templateUrl: 'login.component.html'
 })

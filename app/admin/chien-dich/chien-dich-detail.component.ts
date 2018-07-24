@@ -7,7 +7,7 @@ import { AppStateService } from '../shared/app-state.service';
 import { ChienDichModalComponent } from './chien-dich-modal.component';
 
 @Component({
-	moduleId: module.id,
+	// moduleId: module.id,
 	selector: 'my-chien-dich-detail',
 	templateUrl: 'chien-dich-detail.component.html'
 })
@@ -78,5 +78,15 @@ export class ChienDichDetailComponent implements OnInit {
 			this.doiChoiList.push(data);
 			this.doiChoi = {};
 		});
+	}
+
+	removeDoiChoi(team) {
+		let check = confirm(`Có muốn xóa ${team.name} không?`);
+		if (check) {
+			this.http.delete<any>(this.appState.state.apiRoot + `admin/chiendich/${this.chiendich.id}/team/${team.id}`)
+			.subscribe(() => {
+				this.doiChoiList.splice(this.doiChoiList.indexOf(team), 1);
+			});
+		}
 	}
 }
