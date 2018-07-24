@@ -1,2 +1,4 @@
 node_modules
 dist
+/admin.html
+/team.html
