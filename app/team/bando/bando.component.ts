@@ -122,6 +122,7 @@ export class BandoComponent implements OnInit {
 				});
 			} else {
 				alert('Chua duoc phep tan cong');
+				this.isLoading = false;
 			}
 		});
 	}
