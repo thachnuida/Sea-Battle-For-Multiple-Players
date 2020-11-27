@@ -34,7 +34,7 @@ const Login: React.FC = () => {
   }
 
   if(isLoggedIn) {
-    return <Redirect to={`${process.env.PUBLIC_URL}/chiendich`} />
+    return <Redirect to="/chiendich" />
   };
 
   return (

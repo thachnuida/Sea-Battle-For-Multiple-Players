@@ -1,0 +1,32 @@
+@import "~bootstrap/scss/bootstrap";
+
+.logo {
+  height: 32px;
+}
+
+.map {
+	position: relative;
+
+	.cell {
+    position: absolute;
+    cursor: pointer;
+		width: 30px;
+		height: 30px;
+    border: 1px dashed #007bff;
+    background-color: #4fd0e4;
+    text-align: center;
+
+    img {
+      width: 80%;
+      height: 80%;
+    }
+	}
+
+	.cell-bom {
+		background-color: #fd7e14;
+	}
+}
+
+.fake-hidden {
+  position: fixed; top: -1000px;
+}

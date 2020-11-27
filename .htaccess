@@ -8,4 +8,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteRule ^.*quanly/.* /quanly/index.html [L]
 
-RewriteRule ^doichoi team.html
+#for app in subdirectory /doichoi/
+RewriteBase /doichoi/
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^.*doichoi/.* /doichoi/index.html [L]
